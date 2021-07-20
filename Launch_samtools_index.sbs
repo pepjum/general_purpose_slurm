@@ -1,0 +1,21 @@
+#!/bin/sh
+#SBATCH --mail-user=jgonzalezgom@unav.es
+#SBATCH --mail-type=END
+#SBATCH --output=/home/jgonzalezgom/LOGS/samtools_index_%A_%a.out
+#SBATCH --error=/home/jgonzalezgom/LOGS/samtools_index_%A_%a.err
+#SBATCH --job-name=index
+#SBATCH --array=1-91%5
+#SBATCH --mem=5G
+#SBATCH -p short
+#SBATCH --cpus-per-task=1
+#SBATCH --exclude=nodo05,nodo06,nodo03,nodo04,nodo02,nodo01,nodo07,nodo08,nodo09,nodo10,nodo12
+##### LAUNCH WORK
+
+
+#module load SRA-Toolkit/2.10.3-centos_linux64
+#module load FastQC/0.11.8-Java-1.8
+#module load --dependencies  STAR/2.7.9a-foss-2018b 
+#module load --dependencies Subread/1.6.3-foss-2018b
+module load SAMtools/1.9-foss-2018b
+
+srun --mem=5G $(head -n $SLURM_ARRAY_TASK_ID /home/jgonzalezgom/scripts_general_purpose/launch_samtools_index.cmd  | tail -n 1)
