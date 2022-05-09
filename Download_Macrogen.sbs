@@ -1,0 +1,19 @@
+#!/bin/sh
+#SBATCH --mail-user=jgonzalezgom@unav.es
+#SBATCH --mail-type=END
+#SBATCH --output=/home/jgonzalezgom/LOGS/download%A_%a.out
+#SBATCH --error=/home/jgonzalezgom/LOGS/download%A_%a.err
+#SBATCH --job-name=download
+#SBATCH --array=1-20%10
+#SBATCH --mem=1G
+#SBATCH --cpus-per-task=2
+#SBATCH -p short
+
+##### LAUNCH WORK
+
+
+#module load SRA-Toolkit/2.10.3-centos_linux64
+#module load FastQC/0.11.8-Java-1.8
+
+
+srun --mem=1G $(head -n $SLURM_ARRAY_TASK_ID /home/jgonzalezgom/scripts_general_purpose/launch_download_macrogen.cmd  | tail -n 1)

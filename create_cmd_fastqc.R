@@ -1,15 +1,16 @@
 # create cmd file for download SRA
+args=(commandArgs(TRUE))
 
+pathfiles<-args[1]
+patternfile<-args[2]
+outputpath<-args[3]
 
-#SRA<-read.table("SRR_Acc_List.txt")
-#SRA<-paste(SRA$V1)
-
-files<-list.files("~/01_NMELERO/ERP105482/", pattern=".gz")
-files<-paste0("/home/jgonzalezgom/01_NMELERO/ERP105482/", files)
+files<-list.files(pathfiles,  pattern=patternfile)
+files<-paste0(pathfiles,"/", files)
 
 for(file in files){
     cat(file,"\n")
-    y<-paste0("fastqc --outdir /home/jgonzalezgom/01_NMELERO/ERP105482/fastqc/ ", file)
+    y<-paste0("fastqc --outdir ", outputpath," ", file)
     write(y,file="launch_fastqc.cmd",append=TRUE)
 }
 

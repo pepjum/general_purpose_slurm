@@ -4,17 +4,14 @@
 #SBATCH --output=/home/jgonzalezgom/LOGS/FeC_%A_%a.out
 #SBATCH --error=/home/jgonzalezgom/LOGS/FeC_%A_%a.err
 #SBATCH --job-name=fC
-#SBATCH --array=1-91%5
-#SBATCH --mem=1G
+#SBATCH --array=1-4%1
+#SBATCH --mem=2G
 #SBATCH -p short
 #SBATCH --cpus-per-task=1
-
+#SBATCH --exclude=nodo06,nodo09,nodo05,nodo04
 ##### LAUNCH WORK
 
 
-#module load SRA-Toolkit/2.10.3-centos_linux64
-#module load FastQC/0.11.8-Java-1.8
-#module load --dependencies  STAR/2.7.9a-foss-2018b 
 module load --dependencies Subread/1.6.3-foss-2018b
 
-srun --mem=1G $(head -n $SLURM_ARRAY_TASK_ID /home/jgonzalezgom/scripts_general_purpose/launch_fCounts.cmd  | tail -n 1)
+srun --mem=2G $(head -n $SLURM_ARRAY_TASK_ID /home/jgonzalezgom/scripts_general_purpose/launch_fCounts.cmd  | tail -n 1)

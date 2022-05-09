@@ -1,0 +1,18 @@
+#!/bin/sh
+#SBATCH --mail-user=jgonzalezgom@unav.es
+#SBATCH --mail-type=END
+#SBATCH --output=/home/jgonzalezgom/LOGS/DOWN_%A_%a.out
+#SBATCH --error=/home/jgonzalezgom/LOGS/DOWN_%A_%a.err
+#SBATCH --job-name=DOWNLOAD
+#SBATCH --array=1-82%10
+#SBATCH --mem=1G
+#SBATCH --cpus-per-task=2
+#SBATCH -p short
+#SBATCH --nodelist=nodo05
+##### LAUNCH WORK
+
+
+module load pyEGA3/3.4.0-GCCcore-10.2.0-Python-3.8.6
+
+
+srun --mem=1G $(head -n $SLURM_ARRAY_TASK_ID /home/jgonzalezgom/scripts_general_purpose/chunks_9.cmd  | tail -n 1)

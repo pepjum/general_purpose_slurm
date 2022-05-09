@@ -4,17 +4,12 @@
 #SBATCH --output=/home/jgonzalezgom/LOGS/STAR_%A_%a.out
 #SBATCH --error=/home/jgonzalezgom/LOGS/STAR_%A_%a.err
 #SBATCH --job-name=STAR
-#SBATCH --array=1-39%3
+#SBATCH --array=1-116%10
 #SBATCH --mem=40G
 #SBATCH -p short
-#SBATCH --exclude=nodo05,nodo06,nodo03,nodo04,nodo02,nodo01,nodo07,nodo08,nodo09,nodo10
-#SBATCH --cpus-per-task=6
-
+#SBATCH --exclude=nodo01,nodo05,nodo06,nodo03,nodo04,nodo02,nodo07,nodo08,nodo09,nodo10
 ##### LAUNCH WORK
 
-
-#module load SRA-Toolkit/2.10.3-centos_linux64
-#module load FastQC/0.11.8-Java-1.8
 module load --dependencies  STAR/2.7.9a-foss-2018b 
 
 srun --mem=40G $(head -n $SLURM_ARRAY_TASK_ID /home/jgonzalezgom/scripts_general_purpose/launch_STAR.cmd  | tail -n 1)

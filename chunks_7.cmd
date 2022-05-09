@@ -1,0 +1,2 @@
+pyega3 -c 2  -cf /home/jgonzalezgom/scripts_general_purpose/credentials.json fetch EGAF00005297249 ##
+pyega3 -c 2  -cf /home/jgonzalezgom/scripts_general_purpose/credentials.json fetch EGAF00005297269 ##

@@ -1,4 +1,4 @@
-# ireate unch_fastqc.cmd",append=TRUE)cmd file for download SRA
+/# ireate unch_fastqc.cmd",append=TRUE)cmd file for download SRA
 args=(commandArgs(TRUE))
 
 pathfiles<-args[1]
@@ -11,10 +11,11 @@ Bamfiles<-paste(lapply(strsplit(paste(Bam_files),"\\."),"[",1))
 
 
 for (i in 1:length(Bam_files)){
-    y<-paste0("featureCounts -p -t exon -g gene_id -a ", gtfile, " -o ", paste0(outputpath,"/", Bamfiles[i],".txt")," ", paste0(pathfiles, "/",Bam_files[i]) )
+    y<-paste0("featureCounts -p -t exon -g gene_id -a ", gtffile, " -o ", paste0(outputpath,"/", Bamfiles[i],".txt")," ", paste0(pathfiles, "/",Bam_files[i]) )
     write(y,file="launch_fCounts.cmd",append=TRUE)
 	cat(y, "\n")
 }
+
 
 
 
